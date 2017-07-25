@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myweb.demo.Dao.LoginMapper">
+    <select id="loginProcessing" parameterType="string" resultType="HashMap">
+        select *
+        from USER
+        where id = #{inputId} and password = #{inputPassword}
+    </select>
+
+    <select id="abc" resultType ="INTEGER">
+        select count(*)
+        from USER
+    </select>
+</mapper>
