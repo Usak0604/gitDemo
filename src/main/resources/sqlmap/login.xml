@@ -8,9 +8,4 @@
         from USER
         where id = #{inputId} and password = #{inputPassword}
     </select>
-
-    <select id="abc" resultType ="INTEGER">
-        select count(*)
-        from USER
-    </select>
 </mapper>

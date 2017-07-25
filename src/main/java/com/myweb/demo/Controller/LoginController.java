@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
@@ -23,8 +22,18 @@ public class LoginController {
     }
 
     @RequestMapping("/loginProcessing")
-    public String loginProcessing(@RequestParam Map<String, Object> param, ModelMap model, HttpServletRequest request) throws Exception{
+    public String loginProcessing(@RequestParam Map<String, Object> param, ModelMap model) throws Exception{
         Map<String, Object> result = loginService.loginProcessing(param);
+        String resultMessage = (String)result.get("result");
+
+        switch(resultMessage){
+            case "fail":
+                return "login";
+            case "success":
+                Map modelMap = (Map)result.get("resultMap");
+                model.addAttribute("userInfo", modelMap);
+                return "loginProcessing";
+        }
         return "main";
     }
 }
