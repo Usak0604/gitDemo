@@ -1,10 +1,11 @@
 package com.myweb.demo.Controller;
 
-import com.myweb.demo.Service.Impl.LoginService;
+import com.myweb.demo.Service.Impl.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -12,8 +13,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/")
 public class LoginController {
+    Map<String, Object> result;
+
     @Resource(name="loginService")
-    private LoginService loginService;
+    private UserService userService;
 
 
     @RequestMapping("/")
@@ -21,19 +24,22 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("/loginProcessing")
-    public String loginProcessing(@RequestParam Map<String, Object> param, ModelMap model) throws Exception{
-        Map<String, Object> result = loginService.loginProcessing(param);
-        String resultMessage = (String)result.get("result");
+    @RequestMapping("/signUp")
+    public String signUp() throws Exception{
+        return "signUpPopUp";
+    }
 
-        switch(resultMessage){
-            case "fail":
-                return "login";
-            case "success":
-                Map modelMap = (Map)result.get("resultMap");
-                model.addAttribute("userInfo", modelMap);
-                return "loginProcessing";
-        }
-        return "main";
+    @RequestMapping("/loginProcessing")
+    public String loginProcessing(ModelMap model) throws Exception{
+        Map modelMap = (Map)result.get("resultMap");
+        model.addAttribute("userInfo", modelMap);
+        return "loginProcessing";
+    }
+
+    @RequestMapping("/userCheck")
+    @ResponseBody
+    public Map<String, Object> userCheck(@RequestParam Map<String, Object> param) throws Exception{
+        result = userService.loginProcessing(param);
+        return result;
     }
 }

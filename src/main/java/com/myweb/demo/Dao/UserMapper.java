@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Map;
 
 @Mapper
-public interface LoginMapper {
+public interface UserMapper {
 
     public Map<String, Object> loginProcessing(Map<String, Object> param) throws Exception;
 }

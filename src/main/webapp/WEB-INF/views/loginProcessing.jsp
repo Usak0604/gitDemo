@@ -1,28 +1,22 @@
+<%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Welcome to my web, Login please</title>
+
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
-
-<div class="container" >
-
-    <form id="loginProcess" method="post">
-        <input type="hidden" name="name" value="${userInfo.name}">
-        <input type="hidden" name="user_number" value="${userInfo.user_number}">
-        <input type="hidden" name="id" value="${userInfo.id}">
-        <input type="hidden" name="nickName" value="${userInfo.nickName}">
-    </form>
-
-</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
 
 <script>
     $(document).ready(function () {
-        var uri = '/main/page';//controller 주소
-        $('#loginProcess').attr('action', uri);
-        $('#loginProcess')[0].submit();
+        <%//세션에 로그인한 유저 정보를 저장해놓는다.
+            Map<String, Object> userInfo = (Map<String, Object>) request.getAttribute("userInfo");
+            session.setAttribute("userInfo", userInfo);
+        %>
+
+        //세션에 저장만 하고 바로 메인페이지를 부른다.
+        location.replace('/main/page');
     });
 </script>
+

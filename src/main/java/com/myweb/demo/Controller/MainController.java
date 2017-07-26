@@ -12,8 +12,7 @@ import java.util.Map;
 @RequestMapping("/main")
 public class MainController {
     @RequestMapping("/page")
-    public String mainPage(@RequestParam Map<String, Object> param, ModelMap model){
-        model.addAttribute("userInfo", param);
+    public String mainPage() throws Exception{
         return "main";
     }
 }
