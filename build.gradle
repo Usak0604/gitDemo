@@ -33,6 +33,8 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-jdbc")
 	runtime("mysql:mysql-connector-java:5.1.34")
 
+	compile("org.springframework.boot:spring-boot-starter-mail")
+
 	//runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

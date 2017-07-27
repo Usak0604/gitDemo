@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service("loginService")
+@Service("userService")
 public class UserService {
 
     @Autowired
@@ -26,5 +26,9 @@ public class UserService {
         }
 
         return result;
+    }
+
+    public int idCheck(Map<String, Object> param) throws Exception{
+        return userMapper.idCheck(param);
     }
 }

@@ -25,7 +25,6 @@
 </style>
 
 <div class="container" >
-
     <form id="signInForm" method="post">
         <div class="center-block col-lg-8">
             <h2 class="form-signin-heading">Login.</h2>
@@ -35,12 +34,11 @@
             <%--<label for="inputPassword" class="sr-only">Password</label>--%>
             <input type="password" name="inputPassword" class="form-control pwd" onchange="inputChange(2)" required placeholder="Password">
             <p id="pwd_message">&nbsp;</p>
-            <button class="btn btn-lg btn-primary btn-block" onclick="javascript:signIn()">Sign In</button>
+            <button class="btn btn-lg btn-primary btn-block" onclick="javascript:signIn()">로그인</button>
             <br>
-            <button class="btn btn-lg btn-primary btn-block" onclick="javascript:signUp()">Sign Up</button>
+            <button class="btn btn-lg btn-info btn-block" onclick="javascript:signUp()">회원가입</button>
         </div>
     </form>
-
 </div>
 
 <script>
@@ -65,7 +63,7 @@
         else {
             $.ajax({
                 url : '/userCheck',
-                type : 'get',
+                type : 'post',
                 dataType : 'json',
                 async : false,
                 data : $('#signInForm').serializeArray(),
@@ -109,10 +107,10 @@
         var winX = window.screenX || window.screenLeft || 0;// 현재창의 x좌표
         var winY = window.screenY || window.screenTop || 0;	// 현재창의 y좌표
 
-        var popX = winX + (winWidth - 370)*0.4;
-        var popY = winY + (winHeight - 360)*0.4;
+        var popX = winX + (winWidth - 500)*0.4;
+        var popY = winY + (winHeight - 680)*0.4;
 
-        var popOption = "width=500, height=360, menubar=no, scrollbars=no, status=no;, top=" + popY + ", left=" + popX;
+        var popOption = "width=500, height=680, menubar=no, scrollbars=no, status=no;, top=" + popY + ", left=" + popX;
         window.open(popUrl,"회원가입",popOption);
     }
     

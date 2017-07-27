@@ -9,4 +9,5 @@ import java.util.Map;
 public interface UserMapper {
 
     public Map<String, Object> loginProcessing(Map<String, Object> param) throws Exception;
+    public int idCheck(Map<String, Object> param) throws Exception;
 }
